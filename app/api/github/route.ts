@@ -3,7 +3,7 @@ import { getGithubRepos, formatRepoData } from '@/app/utils/github'
 
 export async function GET() {
   try {
-    const username = 'GariFFon'
+    const username = process.env.GITHUB_USERNAME || 'GariFFon'
     const repos = await getGithubRepos(username)
     const formattedRepos = formatRepoData(repos)
     
@@ -18,4 +18,4 @@ export async function GET() {
       error: 'Failed to fetch GitHub repositories' 
     }, { status: 500 })
   }
-} 
+}

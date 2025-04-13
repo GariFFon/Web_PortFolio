@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer'
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE || 'gmail',
   auth: {
-    user: process.env.EMAIL_USER || 'gaurav.dash05@gmail.com',
+    user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD
   }
 });
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 async function sendEmail(data: any) {
   const mailOptions = {
     from: data.email,
-    to: 'gaurav.dash05@gmail.com', 
+    to: process.env.EMAIL_USER, 
     subject: data.subject,
     text: `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`,
     html: `
@@ -70,4 +70,4 @@ export async function POST(request: NextRequest) {
       error: 'Failed to send message. Please try again later.' 
     }, { status: 500 })
   }
-} 
+}
