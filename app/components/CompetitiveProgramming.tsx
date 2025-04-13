@@ -395,7 +395,7 @@ const CompetitiveProgramming = () => {
                 className="text-textLight leading-relaxed"
                 variants={statItemVariants}
               >
-                I started my competitive programming journey in 2020, focusing on algorithmic problem-solving and data structure optimization.
+                I started my competitive programming journey in 2024, focusing on algorithmic problem-solving and data structure optimization.
                 Over the years, I've participated in numerous online contests and improved my ranking across various platforms.
               </motion.p>
               
