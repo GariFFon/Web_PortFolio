@@ -22,7 +22,7 @@ const Navbar = () => {
       }
 
       // Update active section based on scroll position
-      const sections = ['about', 'projects', 'timeline', 'contact']
+      const sections = ['about', 'competitive-programming', 'projects', 'timeline', 'contact']
       const currentSection = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -43,7 +43,7 @@ const Navbar = () => {
     }
   }, [])
 
-  const navItems = ['about', 'projects', 'timeline', 'contact']
+  const navItems = ['about', 'competitive-programming', 'projects', 'timeline', 'contact']
 
   const mobileMenuVariants = {
     closed: {
@@ -142,7 +142,9 @@ const Navbar = () => {
                   onClick={() => setActiveSection(item)}
                 >
                   <span className="relative z-10 hover:text-accent transition-colors duration-300">
-                    {item === 'timeline' ? 'Experience' : item.charAt(0).toUpperCase() + item.slice(1)}
+                    {item === 'timeline' ? 'Experience' : 
+                     item === 'competitive-programming' ? 'CP' : 
+                     item.charAt(0).toUpperCase() + item.slice(1)}
                   </span>
                   <motion.span 
                     className="absolute -bottom-1 left-0 h-0.5 bg-accent"
@@ -230,7 +232,9 @@ const Navbar = () => {
                     }}
                   >
                     <span className="relative z-10 transition-colors duration-300 group-hover:text-accent">
-                      {item === 'timeline' ? 'Experience' : item.charAt(0).toUpperCase() + item.slice(1)}
+                      {item === 'timeline' ? 'Experience' : 
+                       item === 'competitive-programming' ? 'CP' : 
+                       item.charAt(0).toUpperCase() + item.slice(1)}
                     </span>
                     <motion.span 
                       className="absolute -bottom-1 left-0 h-0.5 bg-accent"
