@@ -316,12 +316,6 @@ const CompetitiveProgramming = () => {
           transition={{ duration: 0.5 }}
         >
           Competitive Programming
-          <motion.span 
-            className="absolute bottom-0 left-0 h-1 bg-accent"
-            initial={{ width: 0 }}
-            animate={isInView ? { width: "100%" } : { width: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          ></motion.span>
         </motion.h2>
       </div>
       
@@ -462,4 +456,4 @@ const CompetitiveProgramming = () => {
   )
 }
 
-export default CompetitiveProgramming 
+export default CompetitiveProgramming
