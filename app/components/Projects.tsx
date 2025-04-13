@@ -138,6 +138,8 @@ const Projects = () => {
                 image = 'domain-specific.png';
               } else if (repoName.includes('gariffon')) {
                 image = 'github.png';
+              } else if (repoName.includes('portfolio')) {
+                image = 'portfolio.png';
               }
               
               // Create a set of additional tech tags based on repository name and description
