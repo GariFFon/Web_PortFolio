@@ -14,7 +14,7 @@ const AnimatedBackground = () => {
     if (!ctx) return
     
     const particles: Particle[] = []
-    const particleCount = 100
+    const particleCount = 120  // Reduced from 150 to 120
     
     // Set canvas dimensions
     const handleResize = () => {
@@ -43,11 +43,11 @@ const AnimatedBackground = () => {
         if (!canvas) return
         this.x = Math.random() * canvas.width
         this.y = Math.random() * canvas.height
-        this.originalSize = this.size = Math.random() * 2 + 0.5
-        this.maxSize = this.originalSize * 1.5
+        this.originalSize = this.size = Math.random() * 2.5 + 0.8  // Slightly reduced from 3+1
+        this.maxSize = this.originalSize * 1.8  // Reduced from 2x
         this.speedX = (Math.random() - 0.5) * 0.6
         this.speedY = (Math.random() - 0.5) * 0.6
-        this.alpha = Math.random() * 0.3 + 0.1
+        this.alpha = Math.random() * 0.4 + 0.15  // Slightly reduced opacity
         this.color = this.getRandomColor()
       }
       
@@ -166,7 +166,7 @@ const AnimatedBackground = () => {
     <>
       <canvas 
         ref={canvasRef} 
-        className="fixed top-0 left-0 w-full h-full -z-10 opacity-70"
+        className="fixed top-0 left-0 w-full h-full -z-10 opacity-75" // Reduced from opacity-80
       />
       
       {/* Gradient orbs */}

@@ -225,10 +225,10 @@ const CompetitiveProgramming = () => {
       url: "https://leetcode.com",
       profileUrl: "https://leetcode.com/u/GariFFon05/",
       stats: {
-        rating: 1850,
-        rank: "Top 5%",
-        solved: 450,
-        badges: ["Annual Badge 2023", "100 Day Streak"]
+        rating: 1674,
+        rank: "Top 15%",
+        solved: 277,
+        badges: ["100 Day Streak", "50 Day Streak", ]
       }
     },
     {
@@ -238,10 +238,10 @@ const CompetitiveProgramming = () => {
       url: "https://codeforces.com",
       profileUrl: "https://codeforces.com/profile/Gourav_Dash",
       stats: {
-        rating: 1650,
-        rank: "Expert",
-        contests: 42,
-        solved: 320
+        rating: 1010,
+        rank: "Pupil",
+        contests: 8,
+        solved: 84
       }
     },
     {
@@ -251,10 +251,10 @@ const CompetitiveProgramming = () => {
       url: "https://www.codechef.com",
       profileUrl: "https://www.codechef.com/users/gariffon05",
       stats: {
-        rating: 1920,
+        rating: 1271,
         rank: "4★",
-        contests: 28,
-        solved: 210
+        contests: 1,
+        solved: 7
       }
     }
   ]

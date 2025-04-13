@@ -11,6 +11,8 @@ const Navbar = () => {
   const [hovering, setHovering] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  // Add state to track clicked section separately from scroll-detected section
+  const [clickedSection, setClickedSection] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,27 +23,33 @@ const Navbar = () => {
         setScrolled(false)
       }
 
-      // Update active section based on scroll position
-      const sections = ['about', 'competitive-programming', 'projects', 'timeline', 'contact']
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+      // Only update active section based on scroll if no section was clicked recently
+      if (!clickedSection) {
+        // Update active section based on scroll position
+        const sections = ['about', 'competitive-programming', 'projects', 'timeline', 'contact']
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section)
+          if (element) {
+            const rect = element.getBoundingClientRect()
+            return rect.top <= 100 && rect.bottom >= 100 && rect.height > 0
+          }
+          return false
+        })
+        
+        if (currentSection) {
+          setActiveSection(currentSection)
         }
-        return false
-      })
-      
-      if (currentSection) {
-        setActiveSection(currentSection)
       }
     }
 
     window.addEventListener('scroll', handleScroll)
+    // Run once on mount to set initial active section
+    handleScroll()
+    
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [clickedSection]) // Add clickedSection as a dependency
 
   const navItems = ['about', 'competitive-programming', 'projects', 'timeline', 'contact']
 
@@ -103,17 +111,7 @@ const Navbar = () => {
           >
             <Link href="/" className="relative group">
               <span className="relative z-10">GariFFon</span>
-              <motion.span 
-                className="absolute -bottom-1 -left-2 -right-2 h-[6px] bg-accent/10 rounded-md"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.6 }}
-                whileHover={{ 
-                  scaleX: 1.1, 
-                  backgroundColor: "rgba(100,255,218,0.3)",
-                  transition: { duration: 0.3 }
-                }}
-              ></motion.span>
+              {/* Removed underline effect */}
             </Link>
           </motion.div>
           
@@ -139,7 +137,24 @@ const Navbar = () => {
                 <Link 
                   href={`#${item}`} 
                   className={`nav-item relative group overflow-hidden ${activeSection === item ? 'text-accent' : 'text-textLight'}`}
-                  onClick={() => setActiveSection(item)}
+                  onClick={(e) => {
+                    // Set active section immediately when clicking
+                    setActiveSection(item)
+                    // Set clicked section to prevent scroll-based updates
+                    setClickedSection(item)
+                    
+                    // Reset clicked section after a delay to allow scroll detection again
+                    setTimeout(() => {
+                      setClickedSection('')
+                    }, 1000)
+                    
+                    // Smooth scroll to the section
+                    e.preventDefault()
+                    const element = document.getElementById(item)
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
                 >
                   <span className="relative z-10 hover:text-accent transition-colors duration-300">
                     {item === 'timeline' ? 'Experience' : 
@@ -226,9 +241,25 @@ const Navbar = () => {
                   <Link
                     href={`#${item}`}
                     className={`block text-lg ${activeSection === item ? 'text-accent' : 'text-textLight'} relative group overflow-hidden`}
-                    onClick={() => {
+                    onClick={(e) => {
+                      // Set active section immediately when clicking
                       setActiveSection(item)
+                      // Set clicked section to prevent scroll-based updates
+                      setClickedSection(item)
+                      // Close the mobile menu
                       setMobileMenuOpen(false)
+                      
+                      // Reset clicked section after a delay to allow scroll detection again
+                      setTimeout(() => {
+                        setClickedSection('')
+                      }, 1000)
+                      
+                      // Smooth scroll to the section
+                      e.preventDefault()
+                      const element = document.getElementById(item)
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' })
+                      }
                     }}
                   >
                     <span className="relative z-10 transition-colors duration-300 group-hover:text-accent">
