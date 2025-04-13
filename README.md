@@ -1,4 +1,4 @@
-# GariFFon Portfolio Website
+# Web_PortFolio
 
 A modern, responsive portfolio website showcasing the skills, projects, and professional journey of Gourav Dash (GariFFon).
 
@@ -38,8 +38,8 @@ A modern, responsive portfolio website showcasing the skills, projects, and prof
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/portfolio-website.git
-   cd portfolio-website
+   git clone https://github.com/GariFFon/Web_PortFolio.git
+   cd Web_PortFolio
    ```
 
 2. Install dependencies:
@@ -110,4 +110,4 @@ This project is licensed under the MIT License.
 
 - Design inspiration from modern portfolio trends
 - Icons from React Icons
-- Animation library by Framer Motion 
+- Animation library by Framer Motion
