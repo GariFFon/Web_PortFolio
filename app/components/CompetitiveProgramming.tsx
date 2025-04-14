@@ -227,7 +227,7 @@ const CompetitiveProgramming = () => {
       stats: {
         rating: 1674,
         rank: "Top 15%",
-        solved: 277,
+        solved: 278,
         badges: ["100 Day Streak", "50 Day Streak", ]
       }
     },
@@ -252,7 +252,7 @@ const CompetitiveProgramming = () => {
       profileUrl: "https://www.codechef.com/users/gariffon05",
       stats: {
         rating: 1271,
-        rank: "4★",
+        rank: "2★",
         contests: 1,
         solved: 7
       }
