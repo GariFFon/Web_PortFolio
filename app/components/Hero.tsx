@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { FaArrowDown } from 'react-icons/fa'
+import { FaFileAlt } from 'react-icons/fa'
 
 const Hero = () => {
   return (
@@ -65,6 +66,17 @@ const Hero = () => {
             >
               <span className="relative z-10">View My Work</span>
               <span className="absolute inset-0 bg-accent/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+            </motion.a>
+            <motion.a 
+              href="/files/gourav-dash-resume.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-secondary border-2 border-accent/20 text-accent px-6 py-3 rounded font-medium flex items-center gap-2 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaFileAlt className="text-sm" />
+              <span>Resume</span>
             </motion.a>
             <motion.a 
               href="#contact" 
@@ -165,4 +177,4 @@ const Hero = () => {
   )
 }
 
-export default Hero 
+export default Hero
