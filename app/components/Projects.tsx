@@ -142,6 +142,8 @@ const Projects = () => {
                 image = 'portfolio.png';
               } else if (repoName.includes('planning')) {
                 image = 'planning.png';
+              } else if (repoName.includes('street')) {
+                image = 'modkicks.png';
               }
               
               // Create a set of additional tech tags based on repository name and description
