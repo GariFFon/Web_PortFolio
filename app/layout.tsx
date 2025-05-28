@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Montserrat, Fira_Code } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -39,7 +40,8 @@ export default function RootLayout({
     <html lang="en" className={`scroll-smooth ${inter.variable} ${montserrat.variable} ${firaCode.variable}`}>
       <body className={`${inter.className} overflow-x-hidden min-h-screen font-sans bg-fixed`}>
         {children}
+        <Analytics />
       </body>
     </html>
   )
-} 
+}

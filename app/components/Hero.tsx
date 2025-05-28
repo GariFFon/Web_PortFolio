@@ -5,8 +5,14 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { FaArrowDown } from 'react-icons/fa'
 import { FaFileAlt } from 'react-icons/fa'
+import { track } from '@vercel/analytics'
 
 const Hero = () => {
+  // Track resume download function
+  const trackResumeDownload = () => {
+    track('Resume Downloaded');
+  };
+
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center py-16 md:py-24 lg:py-32 relative">
       {/* Decorative elements */}
@@ -74,6 +80,7 @@ const Hero = () => {
               className="bg-secondary border-2 border-accent/20 text-accent px-6 py-3 rounded font-medium flex items-center gap-2 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={trackResumeDownload}
             >
               <FaFileAlt className="text-sm" />
               <span>Resume</span>
