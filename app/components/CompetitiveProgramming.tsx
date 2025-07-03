@@ -241,7 +241,7 @@ const CompetitiveProgramming = () => {
         rating: 1010,
         rank: "Pupil",
         contests: 8,
-        solved: 84
+        solved: 94
       }
     },
     {
