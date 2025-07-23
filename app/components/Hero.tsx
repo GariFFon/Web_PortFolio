@@ -74,7 +74,7 @@ const Hero = () => {
               <span className="absolute inset-0 bg-accent/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </motion.a>
             <motion.a 
-              href="/files/gourav-dash-resume.pdf" 
+              href="/files/Gourav_CV_Single_Page.pdf" 
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary border-2 border-accent/20 text-accent px-6 py-3 rounded font-medium flex items-center gap-2 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
