@@ -227,7 +227,7 @@ const CompetitiveProgramming = () => {
       stats: {
         rating: 1674,
         rank: "Top 15%",
-        solved: 470,
+        solved: 471,
         badges: ["100 Day Streak", "50 Day Streak", ]
       }
     },
