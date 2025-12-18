@@ -120,7 +120,7 @@ const Hero = () => {
               {/* Check if profile image exists and display it, otherwise show a placeholder */}
               <div className="relative w-full h-full">
                 <Image 
-                  src="/images/profile.jpg" 
+                  src="/images/New_Profile.jpg" 
                   alt="Gourav Dash - Profile Picture"
                   fill
                   style={{ objectFit: 'cover' }}
