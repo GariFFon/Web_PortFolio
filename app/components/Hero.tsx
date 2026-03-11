@@ -1,16 +1,75 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowDown, FaEye } from 'react-icons/fa'
 import { FaFileAlt } from 'react-icons/fa'
 import { track } from '@vercel/analytics'
 
 const Hero = () => {
+  const [visitorCount, setVisitorCount] = useState<number>(7300);
+  const [displayCount, setDisplayCount] = useState<number>(7300);
+  const [isHovered, setIsHovered] = useState(false);
+
   // Track resume download function
   const trackResumeDownload = () => {
     track('Resume Downloaded');
+  };
+
+  // Visitor counter logic
+  useEffect(() => {
+    const INITIAL_COUNT = 7300;
+    const STORAGE_KEY = 'portfolio_visitor_count';
+    
+    // Get current count from localStorage
+    const storedCount = localStorage.getItem(STORAGE_KEY);
+    let currentCount = INITIAL_COUNT;
+    
+    if (storedCount) {
+      currentCount = parseInt(storedCount, 10);
+    }
+    
+    // Increment the count
+    const newCount = currentCount + 1;
+    
+    // Store the new count
+    localStorage.setItem(STORAGE_KEY, newCount.toString());
+    setVisitorCount(newCount);
+    
+    // Animate the counter
+    let startCount = newCount - 50; // Start animation from slightly lower
+    if (startCount < INITIAL_COUNT) startCount = INITIAL_COUNT;
+    
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const increment = (newCount - startCount) / steps;
+    let currentStep = 0;
+    
+    const timer = setInterval(() => {
+      currentStep++;
+      setDisplayCount(Math.floor(startCount + (increment * currentStep)));
+      
+      if (currentStep >= steps) {
+        setDisplayCount(newCount);
+        clearInterval(timer);
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  // Format the number for display
+  const formatCount = (count: number): string => {
+    if (count >= 1000) {
+      return (count / 1000).toFixed(1) + 'k';
+    }
+    return count.toString();
+  };
+
+  // Format with commas for full number display
+  const formatFullNumber = (count: number): string => {
+    return count.toLocaleString();
   };
 
   return (
@@ -52,10 +111,39 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <p className="text-textLight mb-8 text-base lg:text-lg max-w-lg leading-relaxed">
+            <p className="text-textLight mb-6 text-base lg:text-lg max-w-lg leading-relaxed">
               I build exceptional, high-performance applications with clean, maintainable code.
               Passionate about solving complex problems through elegant solutions.
             </p>
+          </motion.div>
+
+          {/* Visitor Counter */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="mb-8"
+          >
+            <div 
+              className="inline-flex items-center gap-3 bg-secondary/50 backdrop-blur-sm border border-accent/20 rounded-full px-5 py-2.5 shadow-lg shadow-accent/5 cursor-pointer transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <FaEye className="text-accent text-lg" />
+              </motion.div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-accent font-bold text-2xl tracking-tight">
+                  {isHovered ? formatFullNumber(displayCount) : formatCount(displayCount)}
+                </span>
+                <span className="text-textLight text-sm font-medium">
+                  profile views
+                </span>
+              </div>
+            </div>
           </motion.div>
           
           <motion.div 
