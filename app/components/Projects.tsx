@@ -181,6 +181,12 @@ const Projects = () => {
               if (repoName.includes('iot') || repoName.includes('arduino') || repoName.includes('embed')) {
                 additionalTags.add('IoT');
               }
+
+              // Ensure known hosted demos are always linked even when homepage is missing.
+              let demo = repo.homepage || '';
+              if (repoName.includes('recipe')) {
+                demo = 'https://recipesharingportal.vercel.app/';
+              }
               
               return {
                 id: repo.id,
@@ -188,7 +194,7 @@ const Projects = () => {
                 description: repo.description || 'No description provided',
                 technologies: [repo.language, ...(repo.topics || []), ...Array.from(additionalTags)].filter(Boolean),
                 github: repo.html_url,
-                demo: repo.homepage || '',
+                demo,
                 stars: repo.stargazers_count,
                 forks: repo.forks_count,
                 image
