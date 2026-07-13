@@ -21,41 +21,41 @@ const Hero = () => {
   useEffect(() => {
     const INITIAL_COUNT = 7300;
     const STORAGE_KEY = 'portfolio_visitor_count';
-    
+
     // Get current count from localStorage
     const storedCount = localStorage.getItem(STORAGE_KEY);
     let currentCount = INITIAL_COUNT;
-    
+
     if (storedCount) {
       currentCount = parseInt(storedCount, 10);
     }
-    
+
     // Increment the count
     const newCount = currentCount + 1;
-    
+
     // Store the new count
     localStorage.setItem(STORAGE_KEY, newCount.toString());
     setVisitorCount(newCount);
-    
+
     // Animate the counter
     let startCount = newCount - 50; // Start animation from slightly lower
     if (startCount < INITIAL_COUNT) startCount = INITIAL_COUNT;
-    
+
     const duration = 2000; // 2 seconds
     const steps = 60;
     const increment = (newCount - startCount) / steps;
     let currentStep = 0;
-    
+
     const timer = setInterval(() => {
       currentStep++;
       setDisplayCount(Math.floor(startCount + (increment * currentStep)));
-      
+
       if (currentStep >= steps) {
         setDisplayCount(newCount);
         clearInterval(timer);
       }
     }, duration / steps);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -77,7 +77,7 @@ const Hero = () => {
       {/* Decorative elements */}
       <div className="absolute top-40 right-0 w-40 h-40 bg-accent/5 rounded-full blur-3xl animate-pulse-slow opacity-70"></div>
       <div className="absolute bottom-20 left-10 w-60 h-60 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow opacity-70"></div>
-      
+
       <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -95,7 +95,7 @@ const Hero = () => {
               <span className="gradient-text animate-gradient">Gourav Dash</span>
             </h1>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ const Hero = () => {
               Software Developer & Problem Solver
             </h2>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.7 }}
             className="mb-8"
           >
-            <div 
+            <div
               className="inline-flex items-center gap-3 bg-secondary/50 backdrop-blur-sm border border-accent/20 rounded-full px-5 py-2.5 shadow-lg shadow-accent/5 cursor-pointer transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -145,15 +145,15 @@ const Hero = () => {
               </div>
             </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="flex flex-wrap gap-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            <motion.a 
-              href="#projects" 
+            <motion.a
+              href="#projects"
               className="btn-primary border-2 px-6 py-3 font-medium relative overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -161,8 +161,8 @@ const Hero = () => {
               <span className="relative z-10">View My Work</span>
               <span className="absolute inset-0 bg-accent/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </motion.a>
-            <motion.a 
-              href="/files/(Updated)GouravDash.pdf" 
+            <motion.a
+              href="/files/12307549_Gourav.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary border-2 border-accent/20 text-accent px-6 py-3 rounded font-medium flex items-center gap-2 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
@@ -173,8 +173,8 @@ const Hero = () => {
               <FaFileAlt className="text-sm" />
               <span>Resume</span>
             </motion.a>
-            <motion.a 
-              href="#contact" 
+            <motion.a
+              href="#contact"
               className="bg-accent text-primary px-6 py-3 rounded font-medium transition-all duration-300 hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -183,7 +183,7 @@ const Hero = () => {
             </motion.a>
           </motion.div>
         </motion.div>
-        
+
         <motion.div
           className="flex justify-center md:justify-end lg:justify-center mt-8 md:mt-0"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -192,23 +192,23 @@ const Hero = () => {
         >
           <div className="relative">
             {/* Decorative elements */}
-            <motion.div 
+            <motion.div
               className="absolute -inset-4 rounded-full border-2 border-accent/20"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             ></motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="absolute -inset-10 rounded-full border border-accent/10"
               animate={{ rotate: -360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             ></motion.div>
-            
+
             <div className="relative w-60 h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-accent/80 shadow-2xl shadow-accent/20">
               {/* Check if profile image exists and display it, otherwise show a placeholder */}
               <div className="relative w-full h-full">
-                <Image 
-                  src="/images/New_Profile.jpg" 
+                <Image
+                  src="/images/New_Profile.jpg"
                   alt="Gourav Dash - Profile Picture"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -225,19 +225,19 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Accent dots */}
-            <motion.div 
+            <motion.div
               className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-accent/80"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
             ></motion.div>
-            <motion.div 
+            <motion.div
               className="absolute -top-4 -left-4 w-6 h-6 rounded-full bg-accent/60"
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
             ></motion.div>
-            <motion.div 
+            <motion.div
               className="absolute top-1/2 -right-6 w-4 h-4 rounded-full bg-purple-400/60"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity, delay: 0.8 }}
@@ -247,13 +247,13 @@ const Hero = () => {
       </div>
 
       {/* Centered Scroll down indicator */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center w-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
       >
-        <motion.span 
+        <motion.span
           className="text-accent text-sm mb-2"
           animate={{ y: [0, 5, 0] }}
           transition={{ repeat: Infinity, duration: 2.5 }}
