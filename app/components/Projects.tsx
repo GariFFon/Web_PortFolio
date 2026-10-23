@@ -125,7 +125,8 @@ const Projects = () => {
               // Map image filenames based on repository names
               let image = '';
               const repoName = repo.name.toLowerCase();
-              
+
+              // Existing mappings
               if (repoName.includes('java') || repoName.includes('dsa')) {
                 image = 'java-and-full-dsa.png';
               } else if (repoName.includes('cpp') || repoName.includes('c++') || repoName.includes('c_plus_plus')) {
@@ -134,7 +135,7 @@ const Projects = () => {
                 image = 'culture-guide-chatbot.png';
               } else if (repoName.includes('arduino')) {
                 image = 'arduino-projects.png';
-              }else if (repoName.includes('specific')) {
+              } else if (repoName.includes('specific')) {
                 image = 'domain-specific.png';
               } else if (repoName.includes('gariffon')) {
                 image = 'github.png';
@@ -148,6 +149,24 @@ const Projects = () => {
                 image = 'youtube.png';
               } else if (repoName.includes('recipe')) {
                 image = 'recipe.png';
+              }
+              // New mappings for projects without images
+              else if (repoName.includes('ai-investment') || repoName.includes('investment-agent')) {
+                image = 'ai-investment.png';
+              } else if (repoName.includes('crm')) {
+                image = 'crm-system.png';
+              } else if (repoName.includes('email') && (repoName.includes('schedular') || repoName.includes('scheduler'))) {
+                image = 'email-scheduler.png';
+              } else if (repoName.includes('erp')) {
+                image = 'erp-system.png';
+              } else if (repoName.includes('cicd') || repoName.includes('ci-cd')) {
+                image = 'cicd-pipeline.png';
+              } else if (repoName.includes('pr') && repoName.includes('reviewer')) {
+                image = 'pr-reviewer.png';
+              } else if (repoName.includes('roadwatch')) {
+                image = 'roadwatch.png';
+              } else if (repoName.includes('store') && repoName.includes('owner')) {
+                image = 'store-owner.png';
               }
               
               // Create a set of additional tech tags based on repository name and description

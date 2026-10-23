@@ -3,10 +3,34 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-// Mock data - replace with actual data
+// Experience & Education data - ordered with latest first
 const timelineData = [
   {
     id: 1,
+    type: 'experience',
+    date: 'June 2026 - Aug 2026',
+    title: 'Software Development Engineer Intern',
+    organization: 'Exanor (Cybroxide Technologies)',
+    description: [
+      'Built a local, zero-cost GST invoice & bank-statement extraction pipeline (OCR + deterministic validation), improving row-level reconciliation from 67% to 96% on 390+ real transactions within 8GB RAM constraint with no paid LLM APIs',
+      'Architected a Role-Based Access Control (RBAC) system enforcing granular, hierarchy-based permissions across 8+ distinct user roles (Admin, HR Manager, TSF, Sales Partner, Lead Expert, ASF, Sales Head)',
+      'Enforced two-layer defense combining JWT-based middleware route guards with server-side authorization checks, blocking unauthorized access on every sensitive API endpoint',
+      'Developed REST endpoints via Next.js API routes integrating Firebase Admin, Mongoose (MongoDB), JWT authentication, and Node-Cron scheduled jobs',
+      'Automated email service with Nodemailer and Node-Cron for meeting confirmations and lead follow-up reminders'
+    ],
+    skills: ['Next.js', 'Firebase Admin', 'MongoDB', 'Mongoose', 'JWT', 'Node-Cron', 'Nodemailer', 'OCR', 'RBAC', 'REST APIs']
+  },
+  {
+    id: 2,
+    type: 'education',
+    date: 'Aug 2023 - Present',
+    title: 'Bachelor of Technology in Computer Science Engineering',
+    organization: 'Lovely Professional University',
+    description: 'Currently pursuing B.Tech in Computer Science Engineering (CGPA: 8.02). Learning core principles of computer engineering including data structures, algorithms, operating systems, and software development methodologies. Actively participating in coding competitions and technical projects. ICPC-2025 Institute Topper.',
+    skills: ['C/C++', 'Java', 'HTML/CSS', 'Tailwind CSS', 'PHP', 'Data Structures', 'Algorithms', 'Object-Oriented Programming', 'Competitive Programming']
+  },
+  {
+    id: 3,
     type: 'experience',
     date: '2019 - 2023',
     title: 'President of Atal Tinkering Laboratory (ATL)',
@@ -15,22 +39,13 @@ const timelineData = [
     skills: ['Project Management', 'Prototyping', 'Innovation', 'Problem Solving', 'Hackathons']
   },
   {
-    id: 2,
+    id: 4,
     type: 'education',
     date: '2020 - 2023',
     title: 'High School Education',
-    organization: 'Lovely Public Senior Secondary School,PD Vihar,New Delhi',
-    description: 'Completed high school education with focus on science and mathematics. Developed strong foundation in core subjects that prepared me for engineering studies.',
+    organization: 'Lovely Public Senior Secondary School, PD Vihar, New Delhi',
+    description: 'Completed high school education (CBSE) with 74.7% focusing on science and mathematics. Developed strong foundation in core subjects that prepared me for engineering studies.',
     skills: ['Physics', 'Chemistry', 'Mathematics', 'Python', 'Critical Thinking', 'Scientific Analysis']
-  },
-  {
-    id: 3,
-    type: 'education',
-    date: '2023 - Present',
-    title: 'Bachelor of Technology in Computer Science Engineering',
-    organization: 'Lovely Professional University',
-    description: 'Currently pursuing B.Tech in Computer Science Engineering. Learning the core principles of computer engineering, including data structures, algorithms, operating systems, and software development methodologies. Actively participating in coding competitions and technical projects to enhance practical skills.',
-    skills: ['C/C++', 'Java', 'HTML/CSS', 'Tailwind CSS', 'PHP', 'Data Structures', 'Algorithms', 'Object-Oriented Programming']
   }
 ]
 
@@ -39,7 +54,21 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0]; index: nu
   const isEducation = item.type === 'education'
   const borderColor = isEducation ? 'border-accent' : 'border-textLight'
   const iconBgColor = isEducation ? 'bg-accent/20 text-accent' : 'bg-textLight/20 text-textLight'
-  
+
+  // Render description as bullet points if array, otherwise as paragraph
+  const renderDescription = () => {
+    if (Array.isArray(item.description)) {
+      return (
+        <ul className="list-disc list-inside space-y-2 text-textLight mb-4">
+          {item.description.map((point, idx) => (
+            <li key={idx} className="ml-4">{point}</li>
+          ))}
+        </ul>
+      )
+    }
+    return <p className="text-textLight mb-4">{item.description}</p>
+  }
+
   return (
     <motion.div 
       className="mb-16 flex w-full items-center relative"
@@ -58,8 +87,8 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0]; index: nu
             </div>
             
             <p className="text-base text-textLight mb-2">{item.organization}</p>
-            <p className="text-textLight mb-4">{item.description}</p>
-            
+            {renderDescription()}
+
             <div className="flex flex-wrap gap-2">
               {item.skills.map((skill, skillIndex) => (
                 <span key={skillIndex} className="text-xs bg-primary/80 px-3 py-1 rounded-full border border-accent/30 text-textLight hover:bg-accent/20 transition-colors">
@@ -96,8 +125,8 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0]; index: nu
             </div>
             
             <p className="text-base text-textLight mb-2">{item.organization}</p>
-            <p className="text-textLight mb-4">{item.description}</p>
-            
+            {renderDescription()}
+
             <div className="flex flex-wrap gap-2">
               {item.skills.map((skill, skillIndex) => (
                 <span key={skillIndex} className="text-xs bg-primary/80 px-3 py-1 rounded-full border border-accent/30 text-textLight hover:bg-accent/20 transition-colors">
@@ -118,8 +147,8 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0]; index: nu
           </div>
           
           <p className="text-base text-textLight mb-2">{item.organization}</p>
-          <p className="text-sm text-textLight mb-4">{item.description}</p>
-          
+          {renderDescription()}
+
           <div className="flex flex-wrap gap-1.5">
             {item.skills.map((skill, skillIndex) => (
               <span key={skillIndex} className="text-xs bg-primary/80 px-2 py-0.5 rounded-full border border-accent/30 text-textLight">
